@@ -2,7 +2,7 @@
 .env
 .env.*
 !.env.example
-assets/js/config.local.js
+assets/js/config.local.example.js
 
 # Editor / OS
 .DS_Store
