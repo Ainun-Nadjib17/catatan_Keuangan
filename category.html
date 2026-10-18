@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Riwayat dan ringkasan transaksi pada satu kategori." />
+  <title>Kategori · Uangku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body class="app-body" data-page="category">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar navigasi"></aside>
+
+    <div class="app-main">
+      <header class="topbar">
+        <button
+          type="button"
+          class="icon-btn menu-toggle"
+          id="menu-toggle"
+          aria-label="Buka menu navigasi"
+          aria-controls="sidebar"
+          aria-expanded="false"
+        >
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+
+        <div class="topbar-titles">
+          <p class="eyebrow" id="page-eyebrow">Kategori</p>
+          <h1 id="page-title">Kategori</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <button type="button" class="btn btn-primary" id="add-category-transaction">
+            <i data-lucide="plus" aria-hidden="true"></i>
+            <span>Tambah transaksi</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="content">
+        <div id="page-alert" class="alert" role="alert" hidden></div>
+
+        <section class="card category-hero" aria-labelledby="category-name">
+          <span class="category-hero-icon" id="category-icon"></span>
+          <div class="category-hero-info">
+            <p class="eyebrow">Kategori</p>
+            <h2 id="category-name">Memuat…</h2>
+            <p class="muted small" id="category-subtitle"></p>
+          </div>
+        </section>
+
+        <section class="summary-grid summary-grid-compact" aria-label="Ringkasan kategori">
+          <article class="card stat-card">
+            <div class="stat-head">
+              <p class="card-label" id="cat-label-main">—</p>
+            </div>
+            <p class="amount stat-value" id="cat-value-main">—</p>
+            <p class="stat-hint"><span id="cat-count">0</span> transaksi tercatat</p>
+          </article>
+
+          <article class="card stat-card">
+            <div class="stat-head">
+              <p class="card-label" id="cat-label-secondary">—</p>
+            </div>
+            <p class="amount stat-value" id="cat-value-secondary">—</p>
+            <p class="stat-hint">Semua transaksi kategori ini</p>
+          </article>
+
+          <article class="card stat-card">
+            <div class="stat-head">
+              <p class="card-label" id="cat-label-tertiary">—</p>
+            </div>
+            <p class="amount stat-value" id="cat-value-tertiary">—</p>
+            <p class="stat-hint">Dihitung dari data tersimpan</p>
+          </article>
+        </section>
+
+        <section class="card" aria-labelledby="category-history-title">
+          <div class="card-head">
+            <div>
+              <h2 id="category-history-title">Riwayat kategori</h2>
+              <p class="muted small">Edit atau hapus untuk menghitung ulang ringkasan.</p>
+            </div>
+          </div>
+          <div id="category-transaction-list" class="tx-container"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="assets/js/config.local.js"></script>
+  <script type="module" src="assets/js/categories.js"></script>
+</body>
+</html>

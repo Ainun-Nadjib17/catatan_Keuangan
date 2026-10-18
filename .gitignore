@@ -1,0 +1,15 @@
+# Kredensial — jangan pernah di-commit
+.env
+.env.*
+!.env.example
+assets/js/config.local.js
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Log & cache
+*.log
+node_modules/

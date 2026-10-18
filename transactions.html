@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Riwayat, pencarian, dan filter transaksi keuanganmu." />
+  <title>Transaksi · Uangku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body class="app-body" data-page="transactions">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar navigasi"></aside>
+
+    <div class="app-main">
+      <header class="topbar">
+        <button
+          type="button"
+          class="icon-btn menu-toggle"
+          id="menu-toggle"
+          aria-label="Buka menu navigasi"
+          aria-controls="sidebar"
+          aria-expanded="false"
+        >
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+
+        <div class="topbar-titles">
+          <p class="eyebrow" id="page-eyebrow">Arus kas</p>
+          <h1 id="page-title">Transaksi</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <button type="button" class="btn btn-primary" id="add-transaction">
+            <i data-lucide="plus" aria-hidden="true"></i>
+            <span>Tambah transaksi</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="page-intro">
+          <div>
+            <p class="eyebrow">Semua catatan</p>
+            <h2 class="intro-title">Riwayat keuanganmu</h2>
+            <p class="muted">Cari, filter, edit, atau hapus transaksi. Saldo dihitung ulang dari data yang tersimpan.</p>
+          </div>
+        </section>
+
+        <section class="summary-grid summary-grid-compact" aria-label="Ringkasan transaksi">
+          <article class="card stat-card">
+            <p class="card-label">Saldo tersedia</p>
+            <p class="amount stat-value" id="trx-balance">—</p>
+            <p class="stat-hint">Dari semua transaksi</p>
+          </article>
+          <article class="card stat-card">
+            <p class="card-label">Pemasukan</p>
+            <p class="amount stat-value tone-income" id="trx-income">—</p>
+            <p class="stat-hint">Sesuai filter aktif</p>
+          </article>
+          <article class="card stat-card">
+            <p class="card-label">Pengeluaran</p>
+            <p class="amount stat-value" id="trx-expense">—</p>
+            <p class="stat-hint">Sesuai filter aktif</p>
+          </article>
+          <article class="card stat-card">
+            <p class="card-label">Jumlah transaksi</p>
+            <p class="amount stat-value" id="trx-count">—</p>
+            <p class="stat-hint">Sesuai filter aktif</p>
+          </article>
+        </section>
+
+        <div id="page-alert" class="alert" role="alert" hidden></div>
+
+        <section class="card" aria-labelledby="history-title">
+          <div class="card-head">
+            <div>
+              <h2 id="history-title">Riwayat transaksi</h2>
+              <p class="muted small" id="trx-list-count">Memuat…</p>
+            </div>
+          </div>
+
+          <form class="filters" id="transaction-filters" role="search" novalidate>
+            <div class="field field-search">
+              <label class="sr-only" for="filter-search">Cari deskripsi transaksi</label>
+              <i data-lucide="search" aria-hidden="true"></i>
+              <input
+                class="input"
+                type="search"
+                id="filter-search"
+                placeholder="Cari deskripsi…"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="field">
+              <label for="filter-category">Kategori</label>
+              <select id="filter-category">
+                <option value="">Semua kategori</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="filter-type">Tipe</label>
+              <select id="filter-type">
+                <option value="">Semua tipe</option>
+                <option value="income">Pemasukan</option>
+                <option value="expense">Pengeluaran</option>
+                <option value="save">Menabung</option>
+                <option value="unsave">Tarik tabungan</option>
+              </select>
+            </div>
+
+            <div class="field field-date">
+              <label for="filter-from">Dari tanggal</label>
+              <input class="input" type="date" id="filter-from" />
+            </div>
+
+            <div class="field field-date">
+              <label for="filter-to">Sampai tanggal</label>
+              <input class="input" type="date" id="filter-to" />
+            </div>
+
+            <button type="button" class="btn btn-ghost btn-sm filters-reset" id="filter-reset">
+              <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+              <span>Reset</span>
+            </button>
+          </form>
+
+          <div id="transaction-list" class="tx-container"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="assets/js/config.local.js"></script>
+  <script type="module" src="assets/js/transactions.js"></script>
+</body>
+</html>

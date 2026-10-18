@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Kelola tabungan: menabung, menarik, dan riwayatnya." />
+  <title>Tabungan · Uangku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body class="app-body" data-page="savings">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar navigasi"></aside>
+
+    <div class="app-main">
+      <header class="topbar">
+        <button
+          type="button"
+          class="icon-btn menu-toggle"
+          id="menu-toggle"
+          aria-label="Buka menu navigasi"
+          aria-controls="sidebar"
+          aria-expanded="false"
+        >
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+
+        <div class="topbar-titles">
+          <p class="eyebrow" id="page-eyebrow">Tabungan</p>
+          <h1 id="page-title">Tabungan</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <button type="button" class="btn btn-ghost" id="withdraw-savings">
+            <i data-lucide="arrow-down-to-line" aria-hidden="true"></i>
+            <span>Tarik tabungan</span>
+          </button>
+          <button type="button" class="btn btn-primary" id="add-savings">
+            <i data-lucide="plus" aria-hidden="true"></i>
+            <span>Menabung</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="page-intro">
+          <div>
+            <p class="eyebrow">Internal transfer</p>
+            <h2 class="intro-title">Tabunganmu terpisah dari pengeluaran</h2>
+            <p class="muted">
+              Menabung dan menarik tabungan tidak dihitung sebagai pengeluaran konsumsi.
+            </p>
+          </div>
+        </section>
+
+        <div id="page-alert" class="alert" role="alert" hidden></div>
+
+        <section class="summary-grid summary-grid-compact" aria-label="Ringkasan tabungan">
+          <article class="card stat-card stat-card-primary">
+            <div class="stat-head">
+              <p class="card-label">Saldo tabungan</p>
+              <span class="stat-icon stat-icon-primary">
+                <i data-lucide="piggy-bank" aria-hidden="true"></i>
+              </span>
+            </div>
+            <p class="amount stat-value" id="savings-balance">—</p>
+            <p class="stat-hint">Total menabung dikurangi penarikan</p>
+          </article>
+
+          <article class="card stat-card">
+            <div class="stat-head">
+              <p class="card-label">Total menabung</p>
+              <span class="stat-icon tone-save">
+                <i data-lucide="piggy-bank" aria-hidden="true"></i>
+              </span>
+            </div>
+            <p class="amount stat-value" id="savings-saved">—</p>
+            <p class="stat-hint">Masuk tabungan</p>
+          </article>
+
+          <article class="card stat-card">
+            <div class="stat-head">
+              <p class="card-label">Total penarikan</p>
+              <span class="stat-icon tone-unsave">
+                <i data-lucide="arrow-down-to-line" aria-hidden="true"></i>
+              </span>
+            </div>
+            <p class="amount stat-value" id="savings-withdrawn">—</p>
+            <p class="stat-hint">Keluar ke saldo tersedia</p>
+          </article>
+
+          <article class="card stat-card">
+            <div class="stat-head">
+              <p class="card-label">Jumlah catatan</p>
+              <span class="stat-icon">
+                <i data-lucide="list" aria-hidden="true"></i>
+              </span>
+            </div>
+            <p class="amount stat-value" id="savings-count">—</p>
+            <p class="stat-hint">Menabung + penarikan</p>
+          </article>
+        </section>
+
+        <section class="card" aria-labelledby="savings-history-title">
+          <div class="card-head">
+            <div>
+              <h2 id="savings-history-title">Riwayat tabungan</h2>
+              <p class="muted small">Catatan menabung dan penarikan dari kategori Nabung.</p>
+            </div>
+            <a class="link small" href="settings.html#categories">Kelola kategori</a>
+          </div>
+          <div id="savings-list" class="tx-container"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="assets/js/config.local.js"></script>
+  <script type="module" src="assets/js/savings.js"></script>
+</body>
+</html>

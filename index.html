@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Ringkasan saldo, pemasukan, pengeluaran, dan tabunganmu." />
+  <title>Dashboard · Uangku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+</head>
+<body class="app-body" data-page="dashboard">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar navigasi"></aside>
+
+    <div class="app-main">
+      <header class="topbar">
+        <button
+          type="button"
+          class="icon-btn menu-toggle"
+          id="menu-toggle"
+          aria-label="Buka menu navigasi"
+          aria-controls="sidebar"
+          aria-expanded="false"
+        >
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+
+        <div class="topbar-titles">
+          <p class="eyebrow" id="page-eyebrow">Ringkasan</p>
+          <h1 id="page-title">Dashboard</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <button type="button" class="btn btn-primary" id="add-transaction">
+            <i data-lucide="plus" aria-hidden="true"></i>
+            <span>Tambah transaksi</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="page-intro">
+          <div>
+            <p class="eyebrow" id="today-label">Hari ini</p>
+            <h2 class="intro-title" id="dashboard-greeting">Halo</h2>
+            <p class="muted">Ini ringkasan keuanganmu saat ini.</p>
+          </div>
+          <a class="btn btn-ghost btn-sm" href="transactions.html">
+            <i data-lucide="receipt-text" aria-hidden="true"></i>
+            <span>Lihat transaksi</span>
+          </a>
+        </section>
+
+        <div id="page-alert" class="alert" role="alert" hidden></div>
+
+        <section class="summary-grid" aria-label="Ringkasan keuangan">
+          <article class="card stat-card stat-card-primary">
+            <div class="stat-head">
+              <p class="card-label">Saldo tersedia</p>
+              <span class="stat-icon stat-icon-primary">
+                <i data-lucide="wallet-minimal" aria-hidden="true"></i>
+              </span>
+            </div>
+            <p class="amount stat-value" id="dashboard-balance">—</p>
+            <p class="stat-hint" id="balance-initial">Saldo awal —</p>
+          </article>
+
+          <article class="card stat-card">
+            <div class="stat-head">
+              <p class="card-label">Pemasukan</p>
+              <span class="stat-icon tone-income">
+                <i data-lucide="arrow-down-left" aria-hidden="true"></i>
+              </span>
+            </div>
+            <p class="amount stat-value" id="dashboard-income">—</p>
+            <p class="stat-hint">Total seluruh pemasukan</p>
+          </article>
+
+          <article class="card stat-card">
+            <div class="stat-head">
+              <p class="card-label">Pengeluaran</p>
+              <span class="stat-icon tone-expense">
+                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+              </span>
+            </div>
+            <p class="amount stat-value" id="dashboard-expense">—</p>
+            <p class="stat-hint">Hanya pengeluaran konsumsi</p>
+          </article>
+
+          <article class="card stat-card">
+            <div class="stat-head">
+              <p class="card-label">Tabungan</p>
+              <span class="stat-icon tone-save">
+                <i data-lucide="piggy-bank" aria-hidden="true"></i>
+              </span>
+            </div>
+            <p class="amount stat-value" id="dashboard-savings">—</p>
+            <p class="stat-hint">
+              <a class="link small" href="savings.html">Kelola tabungan</a>
+            </p>
+          </article>
+        </section>
+
+        <div class="dashboard-grid">
+          <section class="card" aria-labelledby="composition-title">
+            <div class="card-head">
+              <div>
+                <h2 id="composition-title">Komposisi pengeluaran</h2>
+                <p class="muted small">Proporsi setiap kategori</p>
+              </div>
+            </div>
+            <div class="chart-wrap" id="composition-chart">
+              <canvas id="expense-donut" role="img" aria-label="Grafik komposisi pengeluaran per kategori"></canvas>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="cashflow-title">
+            <div class="card-head">
+              <div>
+                <h2 id="cashflow-title">Arus kas 7 hari</h2>
+                <p class="muted small">Pemasukan vs pengeluaran harian</p>
+              </div>
+            </div>
+            <div class="chart-wrap" id="cashflow-chart">
+              <canvas id="cashflow-bar" role="img" aria-label="Grafik pemasukan dan pengeluaran tujuh hari terakhir"></canvas>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="breakdown-title">
+            <div class="card-head">
+              <div>
+                <h2 id="breakdown-title">Pengeluaran per kategori</h2>
+                <p class="muted small">Hanya transaksi bertipe pengeluaran</p>
+              </div>
+              <a class="link small" href="settings.html#categories">Kelola kategori</a>
+            </div>
+            <div id="category-breakdown"></div>
+          </section>
+
+          <section class="card" aria-labelledby="recent-title">
+            <div class="card-head">
+              <div>
+                <h2 id="recent-title">Transaksi terbaru</h2>
+                <p class="muted small">Enam catatan terakhir</p>
+              </div>
+              <a class="link small" href="transactions.html">Lihat semua</a>
+            </div>
+            <div id="recent-transactions"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="assets/js/config.local.js"></script>
+  <script type="module" src="assets/js/dashboard.js"></script>
+</body>
+</html>

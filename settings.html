@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Kelola akun, saldo awal, dan kategori keuanganmu." />
+  <title>Pengaturan · Uangku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body class="app-body" data-page="settings">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar navigasi"></aside>
+
+    <div class="app-main">
+      <header class="topbar">
+        <button
+          type="button"
+          class="icon-btn menu-toggle"
+          id="menu-toggle"
+          aria-label="Buka menu navigasi"
+          aria-controls="sidebar"
+          aria-expanded="false"
+        >
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+
+        <div class="topbar-titles">
+          <p class="eyebrow" id="page-eyebrow">Akun &amp; preferensi</p>
+          <h1 id="page-title">Pengaturan</h1>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="page-intro">
+          <div>
+            <p class="eyebrow">Profil</p>
+            <h2 class="intro-title">Atur akun dan data dasarmu</h2>
+            <p class="muted">
+              Nama, saldo awal, dan daftar kategori. Semua perubahan disimpan di Supabase.
+            </p>
+          </div>
+        </section>
+
+        <div id="page-alert" class="alert" role="alert" hidden></div>
+
+        <div class="settings-grid">
+          <section class="card settings-section" aria-labelledby="account-title">
+            <div class="card-head">
+              <div>
+                <h2 id="account-title">Akun</h2>
+                <p class="muted small">Informasi profil yang tersimpan di database.</p>
+              </div>
+            </div>
+
+            <div class="settings-row">
+              <span class="settings-key">Email</span>
+              <span class="settings-value" id="account-email">—</span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-key">Nama</span>
+              <span class="settings-value" id="account-name">—</span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-key">Terdaftar sejak</span>
+              <span class="settings-value" id="account-joined">—</span>
+            </div>
+
+            <form id="name-form" class="settings-form" novalidate>
+              <div class="field">
+                <label for="name-input">Ganti nama tampilan</label>
+                <input
+                  class="input"
+                  type="text"
+                  id="name-input"
+                  maxlength="80"
+                  autocomplete="name"
+                  placeholder="Nama kamu"
+                />
+                <p class="hint">Kosongkan untuk menghapus nama.</p>
+              </div>
+              <div class="settings-actions">
+                <button type="submit" class="btn btn-ghost btn-sm">
+                  <i data-lucide="user-round" aria-hidden="true"></i>
+                  <span data-label>Simpan nama</span>
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <section class="card settings-section" aria-labelledby="balance-title">
+            <div class="card-head">
+              <div>
+                <h2 id="balance-title">Saldo awal</h2>
+                <p class="muted small">
+                  Titik nol perhitungan. Tidak akan mengubah atau menghapus riwayat transaksi.
+                </p>
+              </div>
+            </div>
+
+            <div class="settings-row">
+              <span class="settings-key">Saldo awal saat ini</span>
+              <span class="settings-value amount" id="balance-current">—</span>
+            </div>
+
+            <form id="balance-form" class="settings-form" novalidate>
+              <div class="field">
+                <label for="balance-input">Saldo awal baru (Rp)</label>
+                <input
+                  class="input amount-input"
+                  type="text"
+                  id="balance-input"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  placeholder="0"
+                />
+                <p class="hint" id="balance-available">Saldo tersedia saat ini: —</p>
+              </div>
+              <div class="settings-actions">
+                <button type="submit" class="btn btn-ghost btn-sm">
+                  <i data-lucide="wallet-minimal" aria-hidden="true"></i>
+                  <span data-label>Simpan saldo awal</span>
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <section class="card settings-section" id="categories" aria-labelledby="categories-title">
+          <div class="card-head">
+            <div>
+              <h2 id="categories-title">Kategori</h2>
+              <p class="muted small" id="category-count">Memuat…</p>
+            </div>
+          </div>
+
+          <ul class="category-manage-list" id="category-manage-list"></ul>
+
+          <form id="add-category-form" class="settings-form" novalidate>
+            <div class="alert" id="add-category-error" role="alert" hidden></div>
+
+            <div class="settings-form-inline">
+              <div class="field">
+                <label for="category-new-name">Nama kategori baru</label>
+                <input
+                  class="input"
+                  type="text"
+                  id="category-new-name"
+                  maxlength="40"
+                  autocomplete="off"
+                  placeholder="Contoh: Hiburan"
+                />
+              </div>
+
+              <div class="field">
+                <label for="category-new-icon">Ikon</label>
+                <select id="category-new-icon">
+                  <option value="circle" selected>circle</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                <i data-lucide="plus" aria-hidden="true"></i>
+                <span data-label>Tambah kategori</span>
+              </button>
+            </div>
+            <p class="hint">
+              Kategori Nabung dipakai halaman Tabungan dan dikelola oleh sistem, jadi tidak bisa
+              dibuat atau dihapus dari sini.
+            </p>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="assets/js/config.local.js"></script>
+  <script type="module" src="assets/js/settings.js"></script>
+</body>
+</html>

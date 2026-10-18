@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Buat akun Uangku untuk mulai mencatat keuangan pribadimu." />
+  <title>Daftar · Uangku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body class="auth-body" data-page="register">
+  <main class="auth-layout">
+    <section class="auth-panel">
+      <div class="auth-inner">
+        <a class="brand" href="index.html" aria-label="Uangku">
+          <span class="brand-mark"><i data-lucide="wallet-minimal" aria-hidden="true"></i></span>
+          <span class="brand-text">
+            <span class="brand-name">Uangku</span>
+            <span class="brand-sub">Finance tracker</span>
+          </span>
+        </a>
+
+        <header class="auth-heading">
+          <p class="eyebrow">Mulai dari sini</p>
+          <h1>Buat akun Uangku</h1>
+          <p class="muted">Enam kategori bawaan sudah disiapkan. Kamu bisa menambah kategori lain kapan saja.</p>
+        </header>
+
+        <div id="auth-alert" class="alert" role="alert" hidden></div>
+
+        <form id="register-form" class="form" novalidate>
+          <div class="field">
+            <label for="full_name">Nama</label>
+            <input
+              class="input"
+              type="text"
+              id="full_name"
+              name="full_name"
+              autocomplete="name"
+              maxlength="80"
+              placeholder="Nama kamu"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input
+              class="input"
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              inputmode="email"
+              placeholder="nama@email.com"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input
+              class="input"
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="new-password"
+              placeholder="Minimal 8 karakter"
+              minlength="8"
+              required
+            />
+            <p class="hint">Gunakan minimal 8 karakter.</p>
+          </div>
+
+          <div class="field">
+            <label for="confirm_password">Ulangi password</label>
+            <input
+              class="input"
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              autocomplete="new-password"
+              placeholder="••••••••"
+              minlength="8"
+              required
+            />
+          </div>
+
+          <button class="btn btn-primary btn-block" type="submit">
+            <span data-label>Buat akun</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </form>
+
+        <p class="auth-switch">
+          Sudah punya akun? <a class="link" href="login.html">Masuk</a>
+        </p>
+
+        <p class="auth-foot muted small">
+          Dengan mendaftar, kamu membuat ruang data pribadi yang hanya bisa diakses oleh akun ini.
+        </p>
+      </div>
+    </section>
+
+    <aside class="auth-aside" aria-label="Yang kamu dapatkan">
+      <div class="auth-aside-content">
+        <p class="eyebrow">Satu tempat</p>
+        <p class="auth-quote">Dari saldo awal sampai tabungan, semuanya tercatat.</p>
+
+        <ul class="auth-points">
+          <li>
+            <i data-lucide="layout-dashboard" aria-hidden="true"></i>
+            <span>Dashboard ringkas: saldo, pemasukan, pengeluaran, tabungan.</span>
+          </li>
+          <li>
+            <i data-lucide="list-filter" aria-hidden="true"></i>
+            <span>Cari dan filter transaksi berdasarkan kategori, tipe, dan tanggal.</span>
+          </li>
+          <li>
+            <i data-lucide="arrow-left-right" aria-hidden="true"></i>
+            <span>Menabung dan menarik tabungan tanpa mengacaukan total pengeluaran.</span>
+          </li>
+          <li>
+            <i data-lucide="settings-2" aria-hidden="true"></i>
+            <span>Kelola kategori dan saldo awal sesuai kebutuhanmu.</span>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <script src="assets/js/config.local.js"></script>
+  <script type="module" src="assets/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Masuk ke Uangku untuk mengelola pemasukan, pengeluaran, dan tabunganmu." />
+  <title>Masuk · Uangku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body class="auth-body" data-page="login">
+  <main class="auth-layout">
+    <section class="auth-panel">
+      <div class="auth-inner">
+        <a class="brand" href="index.html" aria-label="Uangku">
+          <span class="brand-mark"><i data-lucide="wallet-minimal" aria-hidden="true"></i></span>
+          <span class="brand-text">
+            <span class="brand-name">Uangku</span>
+            <span class="brand-sub">Finance tracker</span>
+          </span>
+        </a>
+
+        <header class="auth-heading">
+          <p class="eyebrow">Selamat datang kembali</p>
+          <h1>Masuk ke akunmu</h1>
+          <p class="muted">Lanjutkan mencatat pemasukan, pengeluaran, dan tabungan dalam satu tempat.</p>
+        </header>
+
+        <div id="auth-alert" class="alert" role="alert" hidden></div>
+
+        <form id="login-form" class="form" novalidate>
+          <div class="field">
+            <label for="email">Email</label>
+            <input
+              class="input"
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              inputmode="email"
+              placeholder="nama@email.com"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input
+              class="input"
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="current-password"
+              placeholder="••••••••"
+              minlength="8"
+              required
+            />
+          </div>
+
+          <button class="btn btn-primary btn-block" type="submit">
+            <span data-label>Masuk</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </form>
+
+        <p class="auth-switch">
+          Belum punya akun? <a class="link" href="register.html">Daftar sekarang</a>
+        </p>
+
+        <p class="auth-foot muted small">
+          Data keuanganmu dilindungi Supabase Auth dan Row Level Security. Tidak ada data
+          finansial yang disimpan di browser.
+        </p>
+      </div>
+    </section>
+
+    <aside class="auth-aside" aria-label="Tentang Uangku">
+      <div class="auth-aside-content">
+        <p class="eyebrow">Uang yang rapi</p>
+        <p class="auth-quote">Catat yang kecil, supaya yang besar tidak kabur.</p>
+
+        <ul class="auth-points">
+          <li>
+            <i data-lucide="wallet" aria-hidden="true"></i>
+            <span>Saldo tersedia dihitung otomatis dari setiap transaksi.</span>
+          </li>
+          <li>
+            <i data-lucide="shapes" aria-hidden="true"></i>
+            <span>Pengeluaran dikelompokkan per kategori yang kamu atur sendiri.</span>
+          </li>
+          <li>
+            <i data-lucide="piggy-bank" aria-hidden="true"></i>
+            <span>Tabungan terpisah dari pengeluaran konsumsi.</span>
+          </li>
+          <li>
+            <i data-lucide="shield-check" aria-hidden="true"></i>
+            <span>Setiap akun hanya bisa mengakses catatannya sendiri.</span>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <script src="assets/js/config.local.js"></script>
+  <script type="module" src="assets/js/auth.js"></script>
+</body>
+</html>
